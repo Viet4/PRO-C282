@@ -1,0 +1,205 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/OsbWood.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.05374656486395573 0.08611281283602903 0.9948346044598528 5.162511939593629
+  position -0.16439411828798237 0.4245985021899399 0.17184935362159057
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+}
+DEF ramp Pose {
+  translation 0 0 0.15
+  rotation 1 0 0 -1.970795
+  children [
+    Shape {
+      appearance OsbWood {
+        textureTransform TextureTransform {
+          scale 0.5 2
+        }
+      }
+      geometry Box {
+        size 0.2 0.02 0.8
+      }
+    }
+  ]
+}
+Robot {
+  translation 0 0 0.22
+  rotation 1 0 0 -0.523595307179586
+  children [
+    DistanceSensor {
+      translation -0.0320525 0.04 0.023
+      rotation 0 0 1 2.3326
+      children [
+        DEF left_sensor Pose {
+          rotation 0.577656895078166 0.5771968951617173 -0.5771968951617173 -2.093935
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.97 0.98 0.25
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.004
+                radius 0.008
+              }
+            }
+          ]
+        }
+      ]
+      name "left eye"
+      lookupTable [
+        0.05 1024 0
+        0 1024 0
+        0.15 0 0
+      ]
+      numberOfRays 2
+    }
+    DistanceSensor {
+      translation 0.0320525 0.04 0.023
+      rotation 0 0 -1 2.3326
+      children [
+        DEF right_sensor Pose {
+          rotation 0.577656895078166 0.5771968951617173 -0.5771968951617173 -2.093935
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.97 0.98 0.25
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.004
+                radius 0.008
+              }
+            }
+          ]
+        }
+      ]
+      name "right eye"
+      lookupTable [
+        0.05 1024 0
+        0 1024 0
+        0.15 0 0
+      ]
+      numberOfRays 2
+    }
+    DEF mouth Pose {
+      translation 2.94586e-08 0.0500001 0.0100001
+      rotation -0.5773502691896258 -0.5773502691896258 0.5773502691896258 2.09439
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.02
+            radius 0.002
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 0.2520000848509187
+        axis 0 1 0
+        anchor 0 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "left wheel motor"
+          consumptionFactor 70
+        }
+        PositionSensor {
+          name "left wheel sensor"
+        }
+      ]
+      endPoint Solid {
+        translation -0.0477356 0.00499999 -0.0325296
+        rotation -0.0034643401859231135 0.7071030379485822 0.7071020379485284 3.13467
+        children [
+          DEF WHEEL Pose {
+            rotation 0.5776835697427537 0.577183546737634 -0.577183546737634 -2.093935
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 1 0 0
+                  roughness 1
+                  metalness 0
+                }
+                geometry Cylinder {
+                  height 0.01
+                  radius 0.025
+                }
+              }
+            ]
+          }
+        ]
+        name "left wheel"
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 0.2520000848509187
+        axis 0 1 0
+        anchor 0 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "right wheel motor"
+          consumptionFactor 70
+        }
+        PositionSensor {
+          name "right wheel sensor"
+        }
+      ]
+      endPoint Solid {
+        translation 0.04726 0.00500035 -0.0316484
+        rotation -0.0034643401859231135 0.7071030379485822 0.7071020379485284 3.13467
+        children [
+          DEF WHEEL Pose {
+            rotation 0.5776835697427537 0.577183546737634 -0.577183546737634 -2.093935
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 1 0 0
+                  roughness 1
+                  metalness 0
+                }
+                geometry Cylinder {
+                  height 0.01
+                  radius 0.025
+                }
+              }
+            ]
+          }
+        ]
+        name "right wheel"
+      }
+    }
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0.4 1
+        roughness 1
+        metalness 0
+      }
+      geometry Cylinder {
+        height 0.1
+        radius 0.05
+      }
+    }
+  ]
+}
